@@ -45,18 +45,16 @@ lines.forEach((line, i) => {
         if (num) winning.push(+num);
     });
     const have = parts[1].split(" ");
-    for (let j = 0; j < count.get(i); j++) {
-        let many = 0;
-        have.forEach((num) => {
-            if (num && winning.includes(+num)) {
-                count.set(i + many + 1, count.get(i + many + 1) + 1);
-                many++;
-            }
-        });
-    }
+    let many = 0;
+    have.forEach((num) => {
+        if (num && winning.includes(+num)) {
+            count.set(i + many + 1, count.get(i + many + 1) + count.get(i));
+            many++;
+        }
+    });
 });
 
-count.forEach((value, key) => {
+count.forEach((value) => {
     result += value;
 });
 
