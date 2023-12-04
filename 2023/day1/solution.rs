@@ -27,14 +27,17 @@ fn main() {
     };
 
     let result_p2 = file_content.lines().fold(0, |acc, line| {
-        let first = line
-            .char_indices()
-            .find_map(|(i, _)| find_number(&line[i..]))
+        // Method 1
+        // let first = line
+        //     .char_indices()
+        //     .find_map(|(i, _)| find_number(&line[i..]))
+        //     .unwrap_or(0);
+        let first = (0..line.len())
+            .find_map(|i| find_number(&line[i..]))
             .unwrap_or(0);
-        let last = line
-            .char_indices()
+        let last = (0..line.len())
             .rev()
-            .find_map(|(i, _)| find_number(&line[i..]))
+            .find_map(|i| find_number(&line[i..]))
             .unwrap_or(0);
         acc + first * 10 + last
     });
