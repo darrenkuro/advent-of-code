@@ -1,8 +1,10 @@
 const fs = require("fs");
 const path = require("path");
 
-const filePath = path.join(__dirname, "input");
+const filePath = path.join(__dirname, "input.txt");
 const fileContent = fs.readFileSync(filePath, "utf8");
+
+// part1
 
 result = 0;
 
@@ -24,14 +26,14 @@ fileContent.split("\n").forEach((line) => {
     result += id;
 });
 
-console.log(result);
+console.log(`Part 1 answer is: ${result}`);
 
 // part2
 result = 0;
 
 fileContent.split("\n").forEach((line) => {
     if (!line) return;
-    // const id = +/Game (\d+)/.exec(line)[1];
+
     let red = 0;
     let green = 0;
     let blue = 0;
@@ -48,4 +50,4 @@ fileContent.split("\n").forEach((line) => {
     result += red * blue * green;
 });
 
-console.log(result);
+console.log(`Part 2 answer is: ${result}`);

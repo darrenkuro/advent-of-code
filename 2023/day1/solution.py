@@ -1,10 +1,29 @@
-def main():
+def part1():
+	result = 0
+	d1 = 0
+	d2 = 0
+
+	with open("input.txt", 'r') as file:
+		for line in file:
+			for c in line:
+				if c.isdigit():
+					d1 = int(c)
+					break
+			for c in reversed(line):
+				if c.isdigit():
+					d2 = int(c)
+					break
+			result += d1 * 10 + d2
+
+	print(f"Part 1 answer is: {result}")
+
+def part2():
 	result = 0
 	d1 = 0
 	d2 = 0
 	numbers = ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]
 
-	with open("input", 'r') as file:
+	with open("input.txt", 'r') as file:
 		for line in file:
 			d1 = 0
 			for i, char in enumerate(line):
@@ -23,8 +42,9 @@ def main():
 						d2 = index + 1
 			result += d1 * 10 + d2
 
-	print(result)
+	print(f"Part 2 answer is: {result}")
+
 
 if __name__ == '__main__':
-	main()
-
+	part1()
+	part2()
