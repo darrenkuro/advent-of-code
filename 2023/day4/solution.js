@@ -10,17 +10,21 @@ result = 0;
 const lines = fileContent.split("\n");
 
 lines.forEach((line, i) => {
-	if (!line) return;
-	const parts = line.split(':')[1].split('|');
-	const nums = parts[0].split(' ');
-	let winning = [];
-	nums.forEach(num => {if (num) winning.push(+num)});
-	const have = parts[1].split(' ');
-	let many = 0;
-	have.forEach(num => {if (num && winning.includes(+num)) many++;});
+    if (!line) return;
+    const parts = line.split(":")[1].split("|");
+    const nums = parts[0].split(" ");
+    let winning = [];
+    nums.forEach((num) => {
+        if (num) winning.push(+num);
+    });
+    const have = parts[1].split(" ");
+    let many = 0;
+    have.forEach((num) => {
+        if (num && winning.includes(+num)) many++;
+    });
 
-	result += many == 0 ? 0 : Math.pow(2, many - 1);
-})
+    result += many == 0 ? 0 : Math.pow(2, many - 1);
+});
 console.log(`Part 1 answer is: ${result}`);
 
 // part2
@@ -28,23 +32,32 @@ result = 0;
 
 let count = new Map();
 
-for (let i = 0; lines[i]; i++) {count.set(i, 1);}
+for (let i = 0; lines[i]; i++) {
+    count.set(i, 1);
+}
 
 lines.forEach((line, i) => {
-	if (!line) return;
-	const parts = line.split(':')[1].split('|');
-	const nums = parts[0].split(' ');
-	let winning = [];
-	nums.forEach(num => {if (num) winning.push(+num)});
-	const have = parts[1].split(' ');
-	for (let j = 0; j < count.get(i); j++) {
-		let many = 0;
-		have.forEach(num => {if (num && winning.includes(+num)) {count.set(i + many + 1, count.get(i + many + 1) + 1); many++}});
-	}
-})
+    if (!line) return;
+    const parts = line.split(":")[1].split("|");
+    const nums = parts[0].split(" ");
+    let winning = [];
+    nums.forEach((num) => {
+        if (num) winning.push(+num);
+    });
+    const have = parts[1].split(" ");
+    for (let j = 0; j < count.get(i); j++) {
+        let many = 0;
+        have.forEach((num) => {
+            if (num && winning.includes(+num)) {
+                count.set(i + many + 1, count.get(i + many + 1) + 1);
+                many++;
+            }
+        });
+    }
+});
 
 count.forEach((value, key) => {
-    	result += value;
+    result += value;
 });
 
 console.log(`Part 2 answer is: ${result}`);
